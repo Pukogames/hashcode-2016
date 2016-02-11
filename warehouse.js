@@ -15,7 +15,7 @@ module.exports = {
   add: function (id, x, y) {
     warehouses[id] = {
       x: x, 
-      y:x, 
+      y: y, 
       products: {}
     };
   },
