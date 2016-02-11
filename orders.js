@@ -24,5 +24,8 @@ module.exports = {
       weight += products.getWeight(pKeys[i]);
     }
     return weight;
+  },
+  getProductCount: function(id) {
+    return Object.keys(orders[id].products).length;
   }
 };
