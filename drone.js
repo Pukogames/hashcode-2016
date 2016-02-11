@@ -1,5 +1,5 @@
 var drones = [];
-var poducts = require('./products');
+var products = require('./products');
 
 function euclidean(p1, p2) {
   var deltaX = Math.pow(p1.x - p2.x, 2),
@@ -34,12 +34,12 @@ module.exports = {
   load: function(id, warehouse, productId, quantity) {
     this.move(id, warehouse);
     this.pick(id, productId);
-    drones[i].movements.push(id + ' L ' + warehouse.id + ' ' + productId + ' ' + quantity);
+    drones[id].movements.push(id + ' L ' + warehouse.id + ' ' + productId + ' ' + quantity);
   },
   unload: function(id, order, productId, quantity) {
     this.move(id, order);
     this.deliver(id, productId);
-    drones[i].movements.push(id + ' D ' + order.id + ' ' + productId + ' ' + quantity);
+    drones[id].movements.push(id + ' D ' + order.id + ' ' + productId + ' ' + quantity);
   },
   deliver: function(id, productId) {
     drones[id].capacity += products.getWeight(productId);

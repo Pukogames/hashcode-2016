@@ -13,12 +13,13 @@ module.exports = function(rows, columns, dronesCount, dronesCapacity, turns) {
   var productType = -1;
   var warehouse = null;
 
-  for(var droneId = 0; droneId < dronesCount; droneId++) {
-    for (var orderId = 0; orderId < orders.count(); orderId++) {
+  for (var orderId = 0; orderId < orders.count(); orderId++) {
+    for(var droneId = 0; droneId < dronesCount; droneId++) {
       productType = orders.getNextProduct(orderId);
       warehouse = warehouses.getWarehouseProduct(productType);
       if (warehouse && typeof warehouse == 'object') {
-        drones.move(droneId, warehouses.getWarehouseProduct(productType))
+        drones.load(droneId, warehouses.getWarehouseProduct(productType), productType, 1);
+        drones.unload(droneId, productType);
       }
     }
   }
