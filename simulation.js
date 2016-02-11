@@ -8,9 +8,18 @@ module.exports = function(rows, columns, dronesCount, dronesCapacity, turns) {
     drones.add(i, warehouses.get(0), turns, dronesCapacity);
   }
 
-  for(var i = 0; i < dronesCount; i++) {
-    for (var j = 0; j < orders.count(); j++) {
-      
+  var drone = drones.get(0);
+  var order = orders.get(0);
+  var productType = -1;
+  var warehouse = null;
+
+  for(var droneId = 0; droneId < dronesCount; droneId++) {
+    for (var orderId = 0; orderId < orders.count(); orderId++) {
+      productType = orders.getNextProduct(orderId);
+      warehouse = warehouses.getWarehouseProduct(productType);
+      if (warehouse && typeof warehouse == 'object') {
+        drones.move(droneId, warehouses.getWarehouseProduct(productType))
+      }
     }
   }
 };
