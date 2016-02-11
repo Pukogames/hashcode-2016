@@ -14,7 +14,8 @@ module.exports = {
       x: warehouse.x,
       y: warehouse.y,
       turns: turns,
-      capacity: capacity
+      capacity: capacity,
+      movements: []
     };
   },
   get: function(id) {
@@ -30,11 +31,19 @@ module.exports = {
     drones[id].capacity -= products.getWeight(productId);
     drones[id].turns--;
   },
+  load: function(id, warehouse, productId, quantity) {
+    this.move(id, warehouse);
+    this.pick(id, productId);
+    drones[i].movements.push(id + ' L ' + warehouse.id + ' ' + productId + ' ' + quantity);
+  },
+  unload: function(id, customer, productId) {
+
+  },
   deliver: function(id, productId) {
     drones[id].capacity += products.getWeight(productId);
     drones[id].turns--;
   },
   canMove: function(id) {
-    return drones[id].turns;
+    return drones[id].turns > 0;
   }
 };
