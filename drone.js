@@ -41,11 +41,26 @@ module.exports = {
     this.deliver(id, productId);
     drones[id].movements.push(id + ' D ' + order.id + ' ' + productId + ' ' + quantity);
   },
+  canGo: function(id, to) {
+    var distance = euclidean(drones[id], to);
+    drones[id].x = to.x;
+    drones[id].y = to.y;
+    var turns -= Math.ceil(distance);
+    return turns > drones[id].turns;
+  },
   deliver: function(id, productId) {
     drones[id].capacity += products.getWeight(productId);
     drones[id].turns--;
   },
   canMove: function(id) {
     return drones[id].turns > 0;
+  },
+  export: function() {
+    var movs = [];
+    for (var i = 0; i < drones.length; i++) {
+      movs = movs.concat(drones[i].movements);
+    }
+
+    return [movs.length].concat(movs);
   }
 };
