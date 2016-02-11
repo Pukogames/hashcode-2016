@@ -45,7 +45,7 @@ module.exports = {
     var distance = euclidean(drones[id], to);
     drones[id].x = to.x;
     drones[id].y = to.y;
-    var turns -= Math.ceil(distance);
+    var turns = Math.ceil(distance);
     return turns > drones[id].turns;
   },
   deliver: function(id, productId) {

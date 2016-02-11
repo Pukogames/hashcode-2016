@@ -1,9 +1,11 @@
 // H A S H   C O D E   2 0 1 6
 
 var lineReader = require('line-reader');
+var fs = require('fs');
 var warehouseService = require('./warehouse');
 var productService = require('./products');
 var orderService = require('./orders');
+var droneService = require('./drone');
 
 main(process.argv[2], process.argv[3]);
 
@@ -89,7 +91,17 @@ function main(inputFile, outputFile) {
   }).then(function () {
     require('./simulation')(parseInt(data.rows), parseInt(data.columns), parseInt(data.drones), parseInt(data.maxpayload), parseInt(data.turns));
 
-    console.log(drones.export());
-    console.log(JSON.stringify(data, null, 2));
+    console.log(droneService.export());
+    var exp = droneService.export();
+    // console.log(JSON.stringify(data, null, 2));
+
+    if (fs.existsSync(outputFile)) {
+      fs.truncateSync(outputFile, 0);
+    }
+
+    for (var i = 0; i < exp.length; i++) {
+      var line = exp[i];
+      fs.appendFileSync(outputFile, line + '\n', encoding = 'utf8');
+    }
   });
 }

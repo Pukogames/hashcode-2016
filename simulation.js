@@ -19,7 +19,7 @@ module.exports = function(rows, columns, dronesCount, dronesCapacity, turns) {
       warehouse = warehouses.getWarehouseProduct(productType);
       if (warehouse && typeof warehouse == 'object') {
         drones.load(droneId, warehouses.getWarehouseProduct(productType), productType, 1);
-        drones.unload(droneId, productType);
+        drones.unload(droneId, orders.get(orderId), productType, 1);
       }
     }
   }
