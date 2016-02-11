@@ -22,9 +22,9 @@ module.exports = {
   },
   move: function(id, to) {
     var distance = euclidean(drones[id], to);
-    drone[id].x = to.x;
-    drone[id].y = to.y;
-    drone[id].turns -= Math.ceil(distance);
+    drones[id].x = to.x;
+    drones[id].y = to.y;
+    drones[id].turns -= Math.ceil(distance);
   },
   pick: function(id, productId) {
     drones[id].capacity -= products.getWeight(productId);
