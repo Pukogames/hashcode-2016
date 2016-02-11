@@ -33,5 +33,8 @@ module.exports = {
   deliver: function(id, productId) {
     drones[id].capacity += products.getWeight(productId);
     drones[id].turns--;
+  },
+  canMove: function(id) {
+    return drones[id].turns;
   }
 };

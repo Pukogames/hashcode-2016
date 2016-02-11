@@ -24,5 +24,12 @@ module.exports = {
   },
   get: function(id) {
     return warehouses[id];
+  },
+  getWarehouseProduct: function (productId) {
+    for(var i = 0; i < warehouses.length; i++) {
+      if (warehouses[i].products[productId] > 0) {
+        return warehouses[i];
+      }
+    }
   }
 };

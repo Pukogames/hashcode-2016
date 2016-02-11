@@ -87,6 +87,7 @@ function main(inputFile, outputFile) {
     }
     ++i;
   }).then(function () {
+    require('./simulation')(parseInt(data.rows), parseInt(data.columns), parseInt(data.drones), parseInt(data.maxpayload), parseInt(data.turns));
     console.log(JSON.stringify(data, null, 2));
   });
 }
