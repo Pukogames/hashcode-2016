@@ -17,7 +17,7 @@ module.exports = function(rows, columns, dronesCount, dronesCapacity, turns) {
     for(var droneId = 0; droneId < dronesCount; droneId++) {
       productType = orders.getNextProduct(orderId);
       warehouse = warehouses.getWarehouseProduct(productType);
-      if (warehouse && typeof warehouse == 'object') {
+      if (warehouse && typeof warehouse == 'object' && drones.canGo(droneId, warehouse, orders.get(orderId))) {
         drones.load(droneId, warehouses.getWarehouseProduct(productType), productType, 1);
         drones.unload(droneId, orders.get(orderId), productType, 1);
       }

@@ -32,5 +32,8 @@ module.exports = {
         return warehouses[i];
       }
     }
+  },
+  removeProduct: function(id, productId) {
+    warehouses[i].products[productId]--;
   }
 };
