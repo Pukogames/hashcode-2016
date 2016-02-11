@@ -5,7 +5,7 @@ function euclidean(p1, p2) {
   var deltaX = Math.pow(p1.x - p2.x, 2),
       deltaY = Math.pow(p1.y - p2.y, 2);
 
-  return Math.floor(Math.sqrt(deltaX + deltaY));
+  return Math.ceil(Math.sqrt(deltaX + deltaY));
 }
 
 module.exports = {
@@ -26,7 +26,7 @@ module.exports = {
     var distance = euclidean(drones[id], to);
     drones[id].x = to.x;
     drones[id].y = to.y;
-    drones[id].turns -= Math.ceil(distance);
+    drones[id].turns -= distance;
   },
   pick: function(id, productId) {
     drones[id].capacity -= products.getWeight(productId);
@@ -46,7 +46,7 @@ module.exports = {
   canGo: function(id, to, toto) {
     var distance = euclidean(drones[id], to);
     var distance2 = euclidean(to, toto);
-    return Math.ceil(distance) + 1 + Math.ceil(distance2) + 1  < drones[id].turns;
+    return distance + 1 + distance2 + 1  < drones[id].turns;
   },
   deliver: function(id, productId) {
     drones[id].capacity += products.getWeight(productId);
