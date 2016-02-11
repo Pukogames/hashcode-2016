@@ -43,7 +43,25 @@ module.exports = {
 
     return rValue;
   },
+  getNextProduct: function(id) {
+    var pKeys = Object.keys(orders[id].products);
+    for(var i = 0; i < pKeys.length; i++) {
+      if (orders[id].products[pKeys[i]] > 0) {
+        orders[id].products[pKeys[i]]--;
+        return pKeys[i];
+      }
+    }
+
+    return false;
+  },
   getProductCount: function(id) {
-    return Object.keys(orders[id].products).length;
+    var pKeys = Object.keys(orders[id].products);
+    var pCount = 0;
+    for(var i = 0; i < pKeys.length; i++) {
+      if (orders[id].products[pKeys[i]] > 0) {
+        pCount += orders[id].products[pKeys[i]];
+      }
+    }
+    return pCount;
   }
 };

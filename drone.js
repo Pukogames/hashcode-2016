@@ -20,10 +20,10 @@ module.exports = {
   get: function(id) {
     return drones[id];
   },
-  move: function(id, warehouse) {
-    var distance = euclidean(drones[id], warehouse);
-    drone[id].x = warehouse.x;
-    drone[id].y = warehouse.y;
+  move: function(id, to) {
+    var distance = euclidean(drones[id], to);
+    drone[id].x = to.x;
+    drone[id].y = to.y;
     drone[id].turns -= Math.ceil(distance);
   },
   pick: function(id, productId) {
