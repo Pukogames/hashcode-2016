@@ -1,12 +1,12 @@
 /*
  * var e = require('./products');
- * e.append(id, weight)
- * e.getWeight(id)
+ * e.add(id, weight)
+ * e.getWeight()
  */
 var products = {};
 
 module.exports = {
-  append: function(id, weight) {
+  add: function(id, weight) {
     products[id] = weight;
   },
   getWeight: function(id) {
