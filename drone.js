@@ -36,8 +36,10 @@ module.exports = {
     this.pick(id, productId);
     drones[i].movements.push(id + ' L ' + warehouse.id + ' ' + productId + ' ' + quantity);
   },
-  unload: function(id, customer, productId) {
-
+  unload: function(id, order, productId, quantity) {
+    this.move(id, order);
+    this.deliver(id, productId);
+    drones[i].movements.push(id + ' D ' + order.id + ' ' + productId + ' ' + quantity);
   },
   deliver: function(id, productId) {
     drones[id].capacity += products.getWeight(productId);

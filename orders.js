@@ -6,7 +6,7 @@ var products = require('./products');
 
 module.exports = {
   add: function(x, y) {
-    orders.push({ x: x, y: y, products: {}});
+    orders.push({ id: orders.length, x: x, y: y, products: {}});
   },
   count: function() {
     return orders.length;
